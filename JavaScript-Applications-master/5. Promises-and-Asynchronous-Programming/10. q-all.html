@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Q all function</title>
+    <script src="../../q.js"></script>
+</head>
+<body>
+    <script>
+
+        function productPromise(a, b) {
+            var d = Q.defer();
+
+            d.resolve(a * b);
+
+            return d.promise;
+        }
+        function addPromise(a, b){
+            var result = a + b;
+            var defer = Q.defer();
+            defer.resolve(result);
+            return defer.promise;
+        }
+
+        function powerPromise(number, power) {
+            var deferred = Q.defer();
+
+            deferred.resolve(Math.pow(number, power));
+
+            return deferred.promise;
+        }
+
+        Q.all([productPromise(2, 3), powerPromise(3, 2), addPromise(5, 21)])
+			.then(function (first) {
+				first.forEach(function(elem){
+                    console.log(elem);
+                })
+			});
+
+    </script>
+</body>
+</html>

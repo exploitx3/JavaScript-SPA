@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Q promise chain</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/q.js/0.9.2/q.js"></script>
+</head>
+<body>
+    <script>
+        function powerPromise(number) {
+            var deferred = Q.defer();
+			if(number < 0){
+                deferred.reject('Error ocurred');
+            }else {
+                deferred.resolve(Math.sqrt(number));
+            }
+            return deferred.promise;
+        }
+
+        powerPromise(-10000)
+                .then(function(result){
+                    return powerPromise(result);
+                })
+                .then()
+                .then(function(result){
+                    console.log(result);
+                }, function(error){
+                    console.error(error);
+                })
+                .done();
+    </script>
+</body>
+</html>

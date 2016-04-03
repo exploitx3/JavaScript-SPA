@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Q promise from function</title>
+    <script src="../../q.js"></script>
+</head>
+<body>
+    <div id="answer">The answer to Life, the Universe and Everything is: </div>
+
+    <script>
+        function answerToEverything(offset){
+            var def = Q.defer();
+//            def.resolve(42+offset);
+            def.reject('neshto stana');
+            return def.promise;
+        }
+
+
+        document.getElementById("answer").innerHTML += answerToEverything(4);
+		
+        Q.fcall(answerToEverything, 2)
+			.then(function (theAnswer) {
+				console.log(theAnswer);
+				document.getElementById("answer").innerHTML += theAnswer;
+			}, function (error) {
+				console.log(error);
+			});
+
+        document.getElementById("answer").innerHTML += " text before asynch call ";
+        document.getElementById("answer").innerHTML += " another text ";
+    </script>
+</body>
+</html>

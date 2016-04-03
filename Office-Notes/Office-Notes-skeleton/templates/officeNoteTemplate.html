@@ -1,0 +1,14 @@
+<ul class="listItems">
+    {{#results}}
+    <li class="item" data-id="{{_id}}">
+        <a href="#">
+            <h2 id="title">{{title}}</h2>
+            <p id="text">{{text}}</p>
+            <div class="author" title="author">{{author}}</div>
+            <div class="deadline" title="deadline">{{deadline}}</div>
+            <!--<div class="deadline" title="deadline">01-02-1990</div>-->
+        </a>
+    </li>
+    {{/results}}
+</ul>
+<div id="pagination"></div>

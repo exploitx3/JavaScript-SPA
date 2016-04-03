@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Angular Seed</title>
+</head>
+<body>
+<h1>Angular Seed</h1>
+<div ng-controller="videosController">
+    <form name="addVideo" novalidate>
+        *Title:<input type="text" name="title" ng-model="video.title" required><br>
+        <label for="pictureUrl">*Picture Url:</label>
+        <input type="text" name="pictureUrl" ng-model="video.pictureUrl" class="form-control" id="pictureUrl"
+               required>
+        <div ng-show="urlCheckPattern()">
+            Not a valid url.
+        </div>
+        <br>
+        *Category:<input type="text" name="category" ng-model="video.category" required><br>
+        Length:<input type="number" name="length" ng-model="video.length" required><br>
+        Subscribers count:<input type="number" name="subscribersCount" ng-model="video.subscribers" required><br>
+        HaveSubtitles:<input type="checkbox" name="haveSubtitles" ng-model="video.haveSubtitles" required><br>
+        <button type="submit"
+                value="addVideoButton" title="addVideoButton" ng-click="addVideoFunc()" ng-disabled="addVideo.$invalid">
+            <span>Login</span>
+        </button>
+    </form>
+
+    <div>
+        OrderBy:
+        <select ng-model="sortOrder">
+            <option selected value="title">Votes</option>
+            <option value="length">Author</option>
+            <option value="date">Date</option>
+        </select>
+        Show:
+        <select ng-model="filterBy">
+            <option selected value="">All</option>
+            <option value="category">Category</option>
+            <option value="date">Date</option>
+            <option value="haveSubtitles">Have Subtitles</option>
+        </select>
+    </div>
+    <ul ng-repeat="video in videos | orderBy:sortOrder | prop(filterBy)">
+        <li>{{video.title}}</li>
+        <li><img src="{{video.pictureUrl}}" alt="pictureUrl"></li>
+        <li>{{video.length}}</li>
+        <li>{{video.category}}</li>
+        <li>{{video.subscribers}}</li>
+        <li>{{video.date}}</li>
+        <li>{{video.haveSubtitles}}</li>
+        <ul ng-repeat="comment in video.comments">
+            <li>{{comment.username}}</li>
+            <li>{{comment.content}}</li>
+            <li>{{comment.date}}</li>
+            <li>{{comment.likes}}</li>
+            <li>{{comment.websiteUrl}}</li>
+        </ul>
+    </ul>
+
+</div>
+<script src="lib/angular/angular.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers/videosController.js"></script>
+</body>
+</html>

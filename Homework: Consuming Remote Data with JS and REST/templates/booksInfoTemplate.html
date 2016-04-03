@@ -1,0 +1,17 @@
+<li>{{title}}
+    <ul>
+        <li>Author: {{author}}</li>
+        <li>ISBN: {{isbn}}</li>
+        <li>Tags:
+            <ul>
+                {{#tags}}<br><li style="display:inline;">{{this}}</li><button class="deleteTagButton" style="display:inline; margin-left: 20px;">Delete Tag</button>
+                <input type="text" id="editTag" value="{{this}}">
+                <button class="editTagButton">Edit Tag</button>{{/tags}}
+            </ul>
+        </li>
+        <br>
+        <label for="addTag">New Tag Name:</label>
+        <input type="text" id="addTag">
+        <button id="addTagButton">Add Tag</button>
+    </ul>
+</li>
